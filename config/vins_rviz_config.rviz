@@ -13,6 +13,9 @@ Panels:
         - /Odometry1/Shape1
         - /Pose1
         - /Path1
+        - /Axes4
+        - /Axes5
+        - /Pose2
       Splitter Ratio: 0.3063700795173645
     Tree Height: 454
   - Class: rviz/Selection
@@ -73,7 +76,7 @@ Visualization Manager:
           Marker Topic: /loop_fusion/pose_graph
           Name: loopLink
           Namespaces:
-            {}
+            CameraPoseVisualization: true
           Queue Size: 100
           Value: true
         - Class: rviz/MarkerArray
@@ -383,7 +386,7 @@ Visualization Manager:
       Axes Radius: 0.10000000149011612
       Class: rviz/Pose
       Color: 255; 25; 0
-      Enabled: true
+      Enabled: false
       Head Length: 2
       Head Radius: 3
       Name: Pose
@@ -392,7 +395,7 @@ Visualization Manager:
       Shape: Arrow
       Topic: /dji_sdk/local_pose
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -414,6 +417,35 @@ Visualization Manager:
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
       Topic: /dji_path
+      Unreliable: false
+      Value: true
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 1
+      Name: Axes
+      Radius: 0.20000000298023224
+      Reference Frame: loop
+      Value: true
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 2
+      Name: Axes
+      Radius: 0.05000000074505806
+      Reference Frame: loop_filtered
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz/Pose
+      Color: 117; 80; 123
+      Enabled: true
+      Head Length: 1
+      Head Radius: 2
+      Name: Pose
+      Shaft Length: 10
+      Shaft Radius: 0.5
+      Shape: Arrow
+      Topic: /pose_loop_filtered
       Unreliable: false
       Value: true
   Enabled: true
@@ -442,25 +474,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/ThirdPersonFollower
-      Distance: 28.226850509643555
+      Distance: 140.13272094726562
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 11.68707275390625
-        Y: -1.9230468273162842
+        X: -2.026334762573242
+        Y: 39.160221099853516
         Z: 0.381397545337677
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3597976565361023
+      Pitch: 1.0197969675064087
       Target Frame: world
       Value: ThirdPersonFollower (rviz)
-      Yaw: 6.242395877838135
+      Yaw: 6.002401351928711
     Saved: ~
 Window Geometry:
   Displays:

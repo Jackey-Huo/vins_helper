@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   geometry_msgs
   std_msgs
+  Eigen3
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -119,6 +121,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
 )
 
 ## Declare a C++ library
@@ -134,7 +137,8 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(pose_to_path_node src/pose_to_path.cpp)
+add_executable(pose_to_path_node src/pose_to_path_node.cpp)
+add_executable(loop_filter_node src/loop_filter_node.cpp src/loop_filter.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -150,6 +154,9 @@ add_executable(pose_to_path_node src/pose_to_path.cpp)
 target_link_libraries(pose_to_path_node
    ${catkin_LIBRARIES}
  )
+target_link_libraries(loop_filter_node
+   ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##

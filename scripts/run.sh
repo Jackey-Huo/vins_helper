@@ -63,7 +63,8 @@ then # rosbag mode
     tmux send -t 4 "rosrun vins_helper pose_to_path_node" Enter
     tmux send -t 5 "rosrun vins vins_node ${config_path} use_sim_time:=true" Enter
     tmux send -t 6 "rosrun loop_fusion loop_fusion_node ${config_path} use_sim_time:=true" Enter
-    tmux send -t 0 "rosbag "
+    #tmux send -t 0 "rosbag "
+    tmux send -t 0 "rosbag play ~/Desktop/bags/2020-01-21-18-48-25_shanyang_04_circle_sunset.bag --clock -r 1.5 -u 126.49"
 else # realtime mode
     tmux send -t 4 "roslaunch mynt_eye_ros_wrapper vins_fusion.launch" Enter
     tmux send -t 5 "rosrun vins vins_node ${config_path}" Enter
