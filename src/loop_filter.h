@@ -1,4 +1,5 @@
 //
+// A tf filter to make tf jump smoother
 // Created by mhc on 2020/2/7.
 //
 
@@ -13,12 +14,9 @@
 class Loop_filter{
 public:
     Loop_filter();
-//    ~Loop_filter();
-    void update_tf(const tf::StampedTransform &tf);
+    void set_target_tf(const tf::StampedTransform &tf);
     void get_tf(tf::StampedTransform &tf);
-
 private:
-
     tf::Quaternion rotation_filtered, rotation_target;
     tf::Vector3 translation_filtered, translation_target;
     double last_update_time;
