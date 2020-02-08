@@ -7,8 +7,8 @@ mynteye S1030 stereo camera
 
 ## Usage
 realtime: (not tested...)
-'''vins_helper/scripts/run.sh -c vins_helper/config/mynteye-1030-1/mynt_stereo_imu_config.yaml '''
+```vins_helper/scripts/run.sh -c vins_helper/config/mynteye-1030-1/mynt_stereo_imu_config.yaml ```
 with recorded rosbag:
-'''vins_helper/scripts/run.sh -c vins_helper/config/mynteye-1030-1/mynt_stereo_imu_config.yaml -b'''
+```vins_helper/scripts/run.sh -c vins_helper/config/mynteye-1030-1/mynt_stereo_imu_config.yaml -b```
 
-# TODO: add data record mode
+TODO: add data record mode
