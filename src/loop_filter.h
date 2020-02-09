@@ -16,10 +16,15 @@ public:
     Loop_filter();
     void set_target_tf(const tf::StampedTransform &tf);
     void get_tf(tf::StampedTransform &tf);
+
+
 private:
-    tf::Quaternion rotation_filtered, rotation_target;
-    tf::Vector3 translation_filtered, translation_target;
-    double last_update_time;
+    tf::Quaternion  rotation_filtered_;
+    tf::Quaternion  rotation_target_;
+    tf::Vector3     translation_filtered_;
+    tf::Vector3     translation_target_;
+
+    double          last_update_time_;
 };
 
 #endif //SRC_LOOP_FILTER_H

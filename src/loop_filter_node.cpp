@@ -5,20 +5,22 @@
 // Created by mhc on 2020/2/7.
 //
 
+#include "loop_filter.h"
+
 #include <cstring>
 #include <ros/ros.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_listener.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
-#include "loop_filter.h"
+#include <boost/bind.hpp>
+
 
 ros::Publisher pose_pub;
 
-void odometry_callback(const nav_msgs::Odometry::ConstPtr& msg)
+void odometry_callback(const nav_msgs::Odometry::ConstPtr& msg, Loop_filter& filter,
+                       tf::TransformListener& tf_listener, tf::TransformBroadcaster& br)
 {
-    static Loop_filter filter;
-    static tf::TransformListener tf_listener;
 
     // try to lookup tf between /world and /loop. Update filter if success.
     tf::StampedTransform transform;
@@ -30,7 +32,6 @@ void odometry_callback(const nav_msgs::Odometry::ConstPtr& msg)
     }
 
     // publish filtered transform
-    static tf::TransformBroadcaster br;
     filter.get_tf(transform); // get filtered transform
     br.sendTransform(transform);
 //    std::cout << "transform:" << transform.getOrigin().getX() << std::endl;
@@ -54,8 +55,17 @@ int main(int argc, char **argv) {
     // advertise filtered pose /pose_loop_filtered
     pose_pub = n.advertise<geometry_msgs::PoseStamped>("/pose_loop_filtered", 100);
 
+    // create context for odometry_callback
+    Loop_filter filter;
+    tf::TransformListener tf_listener;
+    tf::TransformBroadcaster br;
+
     // subscribe VIO published pose
-    ros::Subscriber tf_sub = n.subscribe("/vins_estimator/odometry", 100, odometry_callback);
+    ros::Subscriber tf_sub = n.subscribe<nav_msgs::Odometry>
+          ("/vins_estimator/odometry", 100, boost::bind(&odometry_callback, _1,
+                                                        boost::ref(filter),
+                                                        boost::ref(tf_listener),
+                                                        boost::ref(br)));
 
     ros::spin();
 

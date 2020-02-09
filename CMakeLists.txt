@@ -16,6 +16,8 @@ find_package(catkin REQUIRED COMPONENTS
   tf
 )
 
+find_package(Boost 1.65 REQUIRED)
+
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -122,6 +124,7 @@ include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
+  ${Boost_INCLUDE_DIR}
 )
 
 ## Declare a C++ library
@@ -156,6 +159,7 @@ target_link_libraries(pose_to_path_node
  )
 target_link_libraries(loop_filter_node
    ${catkin_LIBRARIES}
+   ${Boost_LIBRARIES}
 )
 
 #############
